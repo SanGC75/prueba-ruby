@@ -23,23 +23,25 @@ Hashing: Las contraseñas se almacenan cifradas utilizando el algoritmo BCrypt.
 
 ## Instalación y Configuración
 1. Clonar el repositorio:
-	bash
-	```git clone https://github.com/SanGC75/prueba-ruby.git```
-	```cd prueba_siscotel```
+	```bash
+	git clone https://github.com/SanGC75/prueba-ruby.git
+	cd prueba_siscotel
+	```
 
 2. Instalar dependencias:
-	bash
-	```bundle install```
+	```bash
+	bundle install
+	```
 
 3. Configurar la base de datos:
-	bash
-	```rails db:create```
-	```rails db:migrate```
-	```rails db:seed```
+	```bash
+	rails db:create db:migrate db:seed
+	```
 
 4. Iniciar el servidor:
-	bash
-	```rails server```
+	```bash
+	rails server
+	```
 
 ## Endpoints Principales
 | Método | Endpoint | Acción |
