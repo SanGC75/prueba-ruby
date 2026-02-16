@@ -24,31 +24,34 @@ Hashing: Las contraseñas se almacenan cifradas utilizando el algoritmo BCrypt.
 ## Instalación y Configuración
 1. Clonar el repositorio:
 	bash
-	`git clone https://github.com/SanGC75/prueba_siscotel_api.git`
-	`cd prueba_siscotel`
+	```git clone https://github.com/SanGC75/prueba-ruby.git```
+	```cd prueba_siscotel```
 
 2. Instalar dependencias:
 	bash
-	`bundle install`
+	```bundle install```
 
 3. Configurar la base de datos:
 	bash
-	`rails db:create`
-	`rails db:migrate`
-	`rails db:seed`
+	```rails db:create```
+	```rails db:migrate```
+	```rails db:seed```
 
 4. Iniciar el servidor:
 	bash
-	`rails server`
+	```rails server```
 
 ## Endpoints Principales
-- POST 		/api/v1/auth/login 		-> Iniciar sesión
-- DELETE 	/api/v1/auth/logout 	-> Cerrar sesión
-- GET 		/api/v1/customers		-> Listar clientes
-- POST 		/api/v1/customers		-> Registrar cliente
-- GET 		/api/v1/customers/:id	-> Obtener información de un cliente
-- PUT/PATCH /api/v1/customers/:id	-> Actualizar información de un cliente
-- DELETE 	/api/v1/customers/:id	-> Eliminar un cliente (Soft Delete)
+| Método | Endpoint | Acción |
+| :--- | :--- | :--- |
+| **POST** | `/api/v1/auth/login` | Iniciar sesión |
+| **DELETE** | `/api/v1/auth/logout` | Cerrar sesión |
+| **GET** | `/api/v1/customers` | Listar clientes |
+| **POST** | `/api/v1/customers` | Registrar cliente |
+| **GET** | `/api/v1/customers/:id` | Ver detalle de cliente |
+| **PATCH** | `/api/v1/customers/:id` | Actualizar cliente |
+| **DELETE** | `/api/v1/customers/:id` | Eliminar (Soft Delete) |
+| **PATCH** | `/api/v1/customers/:id/restore` | Restaurar cliente |
 
 ## Pruebas con Postman
 En la carpeta `/docs` de este repositorio encontrarás la colección de Postman con todos los endpoints listos para probar.
