@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  person_type: 1
+  full_name: MyString
+  id_number: MyString
+  issue_date: 2026-02-14
+  expiry_date: 2026-02-14
+  status: 1
+
+two:
+  person_type: 1
+  full_name: MyString
+  id_number: MyString
+  issue_date: 2026-02-14
+  expiry_date: 2026-02-14
+  status: 1

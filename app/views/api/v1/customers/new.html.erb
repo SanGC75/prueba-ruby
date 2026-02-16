@@ -1,0 +1,11 @@
+<div class="container mx-auto py-8 px-4">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">Registrar Nuevo Cliente</h1>
+    <%= link_to 'Volver a Clientes', api_v1_customers_path, class: "text-indigo-600 hover:text-indigo-900" %>
+  </div>
+
+  <div class="max-w-xl mx-auto">
+        <%= render 'form', customer: @customer %>
+
+  </div>
+</div>

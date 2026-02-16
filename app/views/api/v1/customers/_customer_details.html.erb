@@ -1,0 +1,49 @@
+<div class="p-6 space-y-4">
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Nombre Completo</label>
+      <p class="text-slate-900 font-medium"><%= customer.full_name %></p>
+    </div>
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Tipo de persona</label>
+      <p class="text-slate-900 font-medium"><%= customer.person_type.upcase %></p>
+    </div>
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Identificación</label>
+      <p class="text-slate-900"><%= customer.id_number %></p>
+    </div>
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Fecha emision</label>
+      <p class="text-slate-900"><%= customer.issue_date %></p>
+    </div>
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Fecha expiracion</label>
+      <p class="text-slate-900"><%= customer.expiry_date %></p>
+    </div>
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Email</label>
+      <p class="text-slate-900"><%= customer.email %></p>
+    </div>
+
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Telefono principal</label>
+      <p class="text-slate-900"><%= customer.phone_primary %></p>
+    </div>
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Telefono secundario</label>
+      <p class="text-slate-900"><%= customer.phone_secondary || "N/A" %></p>
+    </div>
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold block mb-1">Estado</label>
+      <span class="px-2 py-1 rounded-full text-xs font-semibold <%= customer.deleted ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700' %>">
+        <%= customer.deleted ? 'INACTIVO' : 'ACTIVO' %>
+      </span>
+    </div>
+    <div>
+      <label class="text-xs text-slate-500 uppercase font-bold">Creado por:</label>
+      <p class="text-slate-900"><%= customer.creator_user['username'] %></p>
+    </div>
+  
+  </div>
+  <hr class="border-slate-100">
+</div>

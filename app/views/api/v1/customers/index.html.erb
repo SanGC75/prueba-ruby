@@ -1,0 +1,94 @@
+<div class="container mx-auto py-8 px-4">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">Listado de Clientes</h1>
+	<%= link_to 'Nuevo Cliente', new_api_v1_customer_path, 
+      class: "px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 shadow-sm" %>
+    <%= link_to 'Cerrar Sesión', api_v1_auth_logout_path, method: :delete, class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition" %>
+  </div>
+
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <table class="min-w-full leading-normal">
+      <thead>
+        <tr class="bg-slate-800 text-white text-left text-xs uppercase font-semibold tracking-wider">
+          <th class="px-5 py-3 border-b-2">Nombre</th>
+          <th class="px-5 py-3 border-b-2">Email</th>
+          <th class="px-5 py-3 border-b-2">Status</th>
+          <th class="px-5 py-3 border-b-2 text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr class="hover:bg-gray-50 transition">
+            <td class="px-5 py-5 border-b border-gray-200 text-sm">
+              <p class="text-gray-900 whitespace-no-wrap font-medium"><%= customer.full_name %></p>
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 text-sm">
+              <p class="text-gray-900 whitespace-no-wrap"><%= customer.email %></p>
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 text-sm">
+              <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+				<span class="px-2 py-1 rounded-full text-xs font-semibold <%= customer.deleted ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700' %>">
+					<%= customer.deleted ? 'INACTIVO' : 'ACTIVO' %>
+				</span>
+              </span>
+            </td>
+			<td class="px-5 py-5 border-b border-gray-200 text-sm text-center">
+
+            <button onclick="showCustomer(<%= customer.id %>)" class="text-blue-600 hover:text-blue-900 mr-3">
+			Ver
+			</button>
+				<%= link_to 'Editar', edit_api_v1_customer_path(customer), class: "text-yellow-600 hover:text-yellow-900" %>
+				<% if customer.deleted? %>
+				<%= button_to 'Activar', restore_api_v1_customer_path(customer), 
+					method: :patch,
+					onclick: "return confirm('¿Desea activar este cliente?')",
+					class: "text-green-600 hover:text-green-900 bg-transparent border-none cursor-pointer p-0" %>
+				<% else %>
+				<%= button_to 'Eliminar', api_v1_customer_path(customer), 
+					method: :delete, 
+					onclick: "return confirm('¿Desea desactivar este cliente?')",
+					class: "text-red-600 hover:text-red-900 bg-transparent border-none cursor-pointer p-0" %>
+				<% end %>
+			</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="customerModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="fixed inset-0 bg-slate-500 bg-opacity-75 transition-opacity" onclick="closeModal()"></div>
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+      <div class="bg-slate-800 px-4 py-3 flex justify-between items-center">
+        <h3 class="text-lg font-bold text-white">Detalles del Cliente</h3>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-white">&times;</button>
+      </div>
+      <div id="modalContent">
+        <div class="p-10 text-center text-slate-400">Cargando...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  async function showCustomer(id) {
+    const modal = document.getElementById('customerModal');
+    const content = document.getElementById('modalContent');
+    modal.classList.remove('hidden');
+    
+    try {
+      const response = await fetch(`/api/v1/customers/${id}`, {
+        headers: { 'Accept': 'text/html' }
+      });
+      content.innerHTML = await response.text();
+    } catch (error) {
+      content.innerHTML = '<p class="p-6 text-red-500">Error al cargar datos.</p>';
+    }
+  }
+
+  function closeModal() {
+    document.getElementById('customerModal').classList.add('hidden');
+  }
+</script>
+</div>
