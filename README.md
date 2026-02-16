@@ -25,6 +25,8 @@ Hashing: Las contraseñas se almacenan cifradas utilizando el algoritmo BCrypt.
 1. Clonar el repositorio:
 	```bash
 	git clone https://github.com/SanGC75/prueba-ruby.git
+	```
+	```bash
 	cd prueba_siscotel
 	```
 
