@@ -12,7 +12,7 @@ Base de Datos: PostgreSQL
 
 Autenticación: JSON Web Token (JWT)
 
-Arquitectura: RESTful API
+Arquitectura: MVC (Model-View-Controller)
 
 ## Seguridad y Autenticación
 El sistema utiliza JWT (JSON Web Token) para asegurar los endpoints.
